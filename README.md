@@ -1,13 +1,13 @@
 # hapi-controllers
 
-Class-based controllers for Hapi Apps!
+Class-based controllers for Hapi Web Apps!
 
 ## Features
 
-* Designed for use in TypeScript projects - happy (hapi!) to accept PRs for ES6
 * Instantiates controller instances on **each request** for improved security
 * Controller dependencies injectable via the constructor method
 * Route config passed straight through to `server.route()`, so any valid hapi route options will work
+* Designed for use in TypeScript projects - happy (hapi!) to accept PRs for ES6
 
 ## Usage
 
@@ -33,7 +33,7 @@ export class MyController extends Controller {
         method: 'GET',
         path: '/stuff'
     })
-    public stuff() {
+    public stuffPage() {
         this.reply('This is the stuff page...');
     }
 
@@ -80,7 +80,7 @@ rather access them that way. The below will work just fine:
         method: 'GET',
         path: '/things'
     })
-    public things(request: Hapi.Request, reply: Hapi.IReply) {
+    public thingsPage(request: Hapi.Request, reply: Hapi.IReply) {
         reply('This is the things page...');
     }
 ```
