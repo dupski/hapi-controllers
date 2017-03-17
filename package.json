@@ -1,0 +1,21 @@
+{
+  "name": "hapi-controllers",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha -r ts-node/register --recursive \"./src/**/__tests__/*\""
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/es6-promise": "0.0.32",
+    "@types/hapi": "^16.0.0",
+    "@types/mocha": "^2.2.40",
+    "chai": "^3.5.0",
+    "hapi": "^16.1.0",
+    "mocha": "^3.2.0",
+    "ts-node": "^2.1.0",
+    "typescript": "2.2.1"
+  }
+}
