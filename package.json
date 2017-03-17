@@ -12,9 +12,11 @@
     "@types/es6-promise": "0.0.32",
     "@types/hapi": "^16.0.0",
     "@types/mocha": "^2.2.40",
+    "@types/sinon": "^1.16.35",
     "chai": "^3.5.0",
     "hapi": "^16.1.0",
     "mocha": "^3.2.0",
+    "sinon": "^2.0.0",
     "ts-node": "^2.1.0",
     "typescript": "2.2.1"
   }
