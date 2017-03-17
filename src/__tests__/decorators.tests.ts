@@ -29,24 +29,11 @@ describe('@Route decorator', () => {
         let routes = ctrl.prototype.routes;
         expect(routes[0].method).to.equal(route1.method);
         expect(routes[0].path).to.equal(route1.path);
-        expect(routes[0].handler).to.equal('method1');
+        expect(routes[0].handlerName).to.equal('method1');
 
         expect(routes[1].method).to.equal(route2.method);
         expect(routes[1].path).to.equal(route2.path);
-        expect(routes[1].handler).to.equal('method2');
+        expect(routes[1].handlerName).to.equal('method2');
     });
-
-    it('throws an error if config.handler is set', () => {
-        expect(() => {
-            class MyController {
-                @Route({
-                    method: 'GET',
-                    path: '/wibble',
-                    handler: 'george'
-                })
-                method() {}
-            }
-        }).to.throw('You must not define the handler attribute');
-    })
 
 });
