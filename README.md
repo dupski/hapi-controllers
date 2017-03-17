@@ -33,7 +33,7 @@ export class MyController extends Controller {
         method: 'GET',
         path: '/stuff'
     })
-    public home() {
+    public stuff() {
         this.reply('This is the stuff page...');
     }
 
@@ -80,7 +80,7 @@ rather access them that way. The below will work just fine:
         method: 'GET',
         path: '/things'
     })
-    public home(request: Hapi.Request, reply: Hapi.IReply) {
+    public things(request: Hapi.Request, reply: Hapi.IReply) {
         reply('This is the things page...');
     }
 ```
