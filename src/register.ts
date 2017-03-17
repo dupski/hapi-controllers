@@ -12,12 +12,14 @@ export function registerController<T extends Controller>(
     }
     else {
         for (let route of controller.prototype.routes) {
-            route.handler = (request: Hapi.Request, reply: Hapi.IReply) => {
+            let hapiRoute = (Object as any).assign({}, route);
+            hapiRoute.handler = (request: Hapi.Request, reply: Hapi.IReply) => {
                 let ctrl = initFn() as any;
                 ctrl.setRequestContext(request, reply);
                 return ctrl[route.handlerName](request, reply);
             }
-            server.route(route);
+            delete hapiRoute.handlerName;
+            server.route(hapiRoute);
         }
     }
 

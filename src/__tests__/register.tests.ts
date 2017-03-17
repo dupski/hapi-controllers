@@ -19,8 +19,11 @@ let method1Spy: sinon.SinonSpy;
 let method2Spy: sinon.SinonStub;
 let currentInstance: MyController = null;
 
+let serverRoutes: any[];
 let server = {
-    route: sinon.spy()
+    route: (route: any) => {
+        serverRoutes.push(route)
+    }
 } as any;
 
 class MyController extends Controller {
@@ -52,7 +55,7 @@ describe('registerController()', () => {
         ctorSpy = sinon.spy();
         method1Spy = sinon.spy();
         method2Spy = sinon.stub().returns('ret_val');
-        server.route.reset();
+        serverRoutes = [];
     })
 
     it('throws if no routes are defined', () => {
@@ -68,9 +71,9 @@ describe('registerController()', () => {
             MyController,
             () => new MyController());
         
-        expect(server.route.callCount).to.equal(2);
-        expect(server.route.getCall(0).args[0]).to.equal(routes[0])
-        expect(server.route.getCall(1).args[0]).to.equal(routes[1])
+        expect(serverRoutes.length).to.equal(2);
+        expect(serverRoutes[0].path).to.equal(routes[0].path)
+        expect(serverRoutes[1].path).to.equal(routes[1].path)
     });
 
     it('controller is initialised as per the init function on each request', () => {
@@ -78,8 +81,8 @@ describe('registerController()', () => {
             MyController,
             () => new MyController(10, 20));
         
-        routes[0].handler('request1', 'reply1');
-        routes[1].handler('request2', 'reply2');
+        serverRoutes[0].handler('request1', 'reply1');
+        serverRoutes[1].handler('request2', 'reply2');
         
         expect(ctorSpy.callCount).to.equal(2);
         expect(ctorSpy.getCall(0).args).to.deep.equal([10, 20]);
@@ -91,7 +94,7 @@ describe('registerController()', () => {
             MyController,
             () => new MyController(10, 20));
         
-        routes[0].handler('request1', 'reply1');
+        serverRoutes[0].handler('request1', 'reply1');
         
         expect(ctorSpy.callCount).to.equal(1);
         expect(currentInstance.getContext()).to.deep.equal(['request1', 'reply1']);
@@ -102,7 +105,7 @@ describe('registerController()', () => {
             MyController,
             () => new MyController(10, 20));
         
-        routes[0].handler('request1', 'reply1');
+        serverRoutes[0].handler('request1', 'reply1');
         
         expect(ctorSpy.callCount).to.equal(1);
         expect(method1Spy.callCount).to.equal(1);
@@ -114,7 +117,7 @@ describe('registerController()', () => {
             MyController,
             () => new MyController(10, 20));
         
-        let retVal = routes[1].handler('request1', 'reply1');
+        let retVal = serverRoutes[1].handler('request1', 'reply1');
         
         expect(ctorSpy.callCount).to.equal(1);
         expect(method2Spy.callCount).to.equal(1);
