@@ -4,12 +4,13 @@ import * as sinon from 'sinon';
 import { Controller } from '../Controller';
 import { Route } from '../decorators';
 import { registerController } from '../register';
+import { RouteConfiguration } from 'hapi';
 
-let route1 = {
+let route1: RouteConfiguration = {
     method: 'GET',
     path: '/flibble'
 }
-let route2 = {
+let route2: RouteConfiguration = {
     method: ['GET','POST'],
     path: '/jibble'
 }

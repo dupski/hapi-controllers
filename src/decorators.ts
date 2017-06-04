@@ -1,7 +1,7 @@
 
 import * as Hapi from 'hapi';
 
-export function Route(config: Hapi.IRouteConfiguration) {
+export function Route(config: Hapi.RouteConfiguration) {
     return function (target: any, methodName: string, descriptor: PropertyDescriptor) {
         if (!target.routes) {
             target.routes = [];

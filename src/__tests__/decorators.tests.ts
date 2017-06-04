@@ -2,15 +2,16 @@
 import { expect } from 'chai';
 import { Controller } from '../Controller';
 import { Route } from '../decorators';
+import { RouteConfiguration } from "hapi";
 
 describe('@Route decorator', () => {
 
     it('adds a routes property to the class prototype', () => {
-        let route1 = {
+        let route1: RouteConfiguration = {
             method: 'GET',
             path: '/flibble'
         }
-        let route2 = {
+        let route2: RouteConfiguration = {
             method: ['GET','POST'],
             path: '/jibble'
         }

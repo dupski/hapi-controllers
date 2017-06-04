@@ -70,7 +70,7 @@ server.start((err) => {
 The `Controller` base class has the following properties:
 
 * `this.request` - the Hapi.Request object
-* `this.reply` - the Hapi.IReply function relating to the current request
+* `this.reply` - the Hapi.ReplyNoContinue function relating to the current request
 
 The request and reply are also passed to your controller function if you'd
 rather access them that way. The below will work just fine:

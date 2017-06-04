@@ -13,7 +13,7 @@ export function registerController<T extends Controller>(
     else {
         for (let route of controller.prototype.routes) {
             let hapiRoute = (Object as any).assign({}, route);
-            hapiRoute.handler = (request: Hapi.Request, reply: Hapi.IReply) => {
+            hapiRoute.handler = (request: Hapi.Request, reply: Hapi.ReplyNoContinue) => {
                 let ctrl = initFn() as any;
                 ctrl.setRequestContext(request, reply);
                 return ctrl[route.handlerName](request, reply);
