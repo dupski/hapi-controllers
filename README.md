@@ -80,7 +80,7 @@ rather access them that way. The below will work just fine:
         method: 'GET',
         path: '/things'
     })
-    public thingsPage(request: Hapi.Request, reply: Hapi.IReply) {
+    public thingsPage(request: Hapi.Request, reply: Hapi.ReplyNoContinue) {
         reply('This is the things page...');
     }
 ```
